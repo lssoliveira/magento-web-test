@@ -21,5 +21,11 @@ import "allure-cypress";
 const registerCypressGrep = require('@cypress/grep')
 registerCypressGrep()
 
+Cypress.on('uncaught:exception', (err) => {
+  if (err.message.includes('AddFotoramaVideoEvents is not a function')) {
+    return false;
+  }
+});
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
