@@ -16,7 +16,7 @@ beforeEach(() => {
   cy.successLogin(loginDefault.email, loginDefault.pass);
   cy.goToCart();
   cy.cleanCart();
-  cy.addProductToCart(product.torqueShort);
+  cy.serchAndAddProductToCart(product.torqueShort);
   magentoProductPage.accessCartByProduct();
 })
 
@@ -34,6 +34,7 @@ describe('Checkout Magento', { tags: tags.checkout }, () => {
     magentoCheckoutPage.nextStep();
     magentoCheckoutPage.placeOrder();
 
+    magentoCheckoutPage.checkPaymentInformation(200);
     magentoCheckoutPage.checkOrderPlaced('Thank you for your purchase!', 'Your order number is: ', "We'll email you an order confirmation with details and tracking info.");
     magentoCheckoutPage.checkOrderCreated(product.torqueShort.name, product.torqueShort.price);
   });

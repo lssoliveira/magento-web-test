@@ -1,4 +1,4 @@
-import { routes } from "../support/routes/routes.enum"
+import { endPoints } from "../support/routes/endPoints.enum"
 
 class MagentoCheckoutPage {
 
@@ -73,7 +73,7 @@ class MagentoCheckoutPage {
     cy.get("div[role='tab']").contains('in Cart')
       .click();
     cy.get('.product-item').contains('View Details')
-      .click();
+      .click({ force: true });
   }
 
   checkOrderSummary(product) {
@@ -86,16 +86,14 @@ class MagentoCheckoutPage {
   }
 
   nextStep() {
+    cy.interceptRequest('GET', endPoints.cartsMine, 'cartsMine')
     cy.get('button.continue')
       .click();
   }
 
   placeOrder() {
-    cy.waitRequest('GET', routes.cartsMine, 'cartsMine')
-    cy.wait('@cartsMine')
-      .its('response.statusCode')
-      .should('eq', 200)
-
+    cy.waitAndCheckRequest('@cartsMine', 200)
+    cy.interceptRequest('POST', endPoints.paymentInformation, 'paymentInformation')
     cy.get("button[title='Place Order']")
       .click();
   }
@@ -117,6 +115,10 @@ class MagentoCheckoutPage {
     cy.get('#my-orders-table').first()
       .should('contain.text', product)
       .should('contain.text', price)
+  }
+
+  checkPaymentInformation(statusCode) {
+    cy.waitAndCheckRequest('@paymentInformation', statusCode)
   }
 
 }

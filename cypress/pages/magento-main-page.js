@@ -39,6 +39,7 @@ class MagentoMainPage {
   accessProduct(product) {
     cy.get('.product-item-info').contains(product)
       .click();
+    cy.captchaHtmlWait();
   }
 
   accessCart() {
