@@ -1,0 +1,41 @@
+name: Magento Smoke Test
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  playwright-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+
+      - name: Install Cypress dependencies
+        run: |
+          npm ci
+          npm install -g allure-commandline
+          npx cypress install
+          
+      - name: Run Cypress tests
+        env:
+          CYPRESS_PASS_DEFAULT: ${{ secrets.CYPRESS_PASS_DEFAULT }}
+        run: |
+          npm run cypress:run:smoke
+
+      - name: Generate Allure report
+        if: always()
+        run: |
+          npm run allure:generete
+
+      - name: Output Allure report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-allure-report
+          path: /allure-report/
+          retention-days: 10

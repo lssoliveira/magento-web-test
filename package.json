@@ -1,0 +1,41 @@
+{
+  "name": "magento-web-test",
+  "version": "1.0.0",
+  "description": "Magento Test Automation",
+  "scripts": {
+    "cypress:open": "npx cypress open",
+    "cypress:run:full": "npm run allure:clean && npx cypress run",
+    "cypress:run:e2e": "npm run allure:clean && npx cypress run --env grepTags=@e2e",
+    "cypress:run:smoke": "npm run allure:clean && npx cypress run --env grepTags=@smoke",
+    "cypress:run:smoke:prd": "npm run allure:clean && npx cypress run --env configFile=PRD,grepTags=@smoke",
+    "cypress:run:smoke:dev": "npm run allure:clean && npx cypress run --env configFile=DEV,grepTags=@smoke",
+    "cypress:run:login": "npm run allure:clean && npx cypress run --env grepTags=@login",
+    "cypress:run:register": "npm run allure:clean && npx cypress run --env grepTags=@register",
+    "cypress:run:account": "npm run allure:clean && npx cypress run --env grepTags=@account",
+    "cypress:run:browse": "npm run allure:clean && npx cypress run --env grepTags=@browse",
+    "cypress:run:cart": "npm run allure:clean && npx cypress run --env grepTags=@cart",
+    "cypress:run:checkout": "npm run allure:clean && npx cypress run --env grepTags=@checkout",
+    "cypress:run:smoke:chrome": "npm run allure:clean && cypress run --browser chrome --env grepTags=@login",
+    "cypress:run:smoke:electron": "npm run allure:clean && npx cypress run --browser electron --env grepTags=@login",
+    "cypress:run:smoke:edge": "npm run allure:clean && npx cypress run --browser edge --env grepTags=@login",
+    "allure:generete": "allure generate ./allure-results -o ./allure-report",
+    "allure:open": "allure open ./allure-report",
+    "allure:clean": "npx rimraf ./allure-results/ && npx rimraf ./allure-report/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lssoliveira/magento-web-test"
+  },
+  "keywords": [],
+  "author": "Lucas Schmidt de Oliveira",
+  "license": "ISC",
+  "devDependencies": {
+    "@cypress/grep": "^4.1.0",
+    "@faker-js/faker": "^9.3.0",
+    "allure-cypress": "^3.0.7",
+    "cypress": "^13.8.1",
+    "cypress-localstorage-commands": "^2.2.7",
+    "cypress-plugin-tab": "^1.0.5",
+    "cypress-real-events": "^1.13.0"
+  }
+}
