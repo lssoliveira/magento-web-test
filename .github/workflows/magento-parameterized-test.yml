@@ -24,7 +24,7 @@ on:
         type: choice
         options:
           - chrome
-          - firefox
+          - electron
           - edge
 
 jobs:
