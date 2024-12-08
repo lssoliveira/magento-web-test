@@ -73,7 +73,7 @@ class MagentoCheckoutPage {
     cy.get("div[role='tab']").contains('in Cart')
       .click();
     cy.get('.product-item').contains('View Details')
-      .click();
+      .click({ force: true });
   }
 
   checkOrderSummary(product) {
