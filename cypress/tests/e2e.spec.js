@@ -25,7 +25,7 @@ describe('E2E Magento', { tags: tags.e2e }, () => {
     magentoRegisterPage.fillRegister(register.successRegistration);
     magentoRegisterPage.createAccountButton();
     magentoMainPage.checkLoggedUser(fullName);
-    cy.addProductToCart(product.torqueShort)
+    cy.serchAndAddProductToCart(product.torqueShort)
     magentoProductPage.accessCartByProduct();
     magentoCartPage.procedToCheckout();
     magentoCheckoutPage.fillAddress(address.fullAdrress);

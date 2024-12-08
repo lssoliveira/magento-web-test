@@ -1,4 +1,4 @@
-import { routes } from "../support/routes/routes.enum"
+import { endPoints } from "../support/routes/endPoints.enum"
 
 class MagentoProductPage {
 
@@ -39,7 +39,7 @@ class MagentoProductPage {
     cy.get('div[role="alert"]').contains('shopping cart')
       .click();
 
-    cy.waitRequest('GET', routes.shippingMethod, 'shippingMethod')
+    cy.interceptRequest('GET', endPoints.shippingMethod, 'shippingMethod')
     cy.wait('@shippingMethod')
       .its('response.statusCode')
       .should('eq', 200)

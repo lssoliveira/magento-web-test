@@ -1,5 +1,3 @@
-import { routes } from "../support/routes/routes.enum"
-
 class MagentoAccountPage {
 
   checkMyAccountPage(message) {
@@ -26,14 +24,10 @@ class MagentoAccountPage {
   accessManageAddresses() {
     cy.get('a').contains('Manage Addresses')
       .click();
-
-    cy.waitRequest('GET', routes.getConfig, 'getConfig')
-    cy.wait('@getConfig')
-      .its('response.statusCode')
-      .should('eq', 200)
   }
 
   accessAddNewAddress() {
+    cy.captchaHtmlWait()
     cy.get("button[title='Add New Address']")
       .click();
   }

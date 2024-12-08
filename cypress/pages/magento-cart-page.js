@@ -1,5 +1,3 @@
-import { routes } from "../support/routes/routes.enum"
-
 class MagentoCartPage {
 
   checkProductInCart(product) {
@@ -18,11 +16,7 @@ class MagentoCartPage {
   procedToCheckout() {
     cy.get("button[data-role='proceed-to-checkout']")
       .click();
-
-    cy.waitRequest('GET', routes.shippingMethod, 'shippingMethod')
-    cy.wait('@shippingMethod')
-      .its('response.statusCode')
-      .should('eq', 200)
+    cy.captchaHtmlWait();
   }
 
 }

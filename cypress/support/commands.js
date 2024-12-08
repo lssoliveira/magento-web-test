@@ -1,5 +1,6 @@
 import MagentoMainPage from "../pages/magento-main-page";
 import MagentoProductPage from "../pages/magento-product-page";
+import { endPoints } from "./routes/endPoints.enum"
 const magentoProductPage = new MagentoProductPage;
 const magentoMainPage = new MagentoMainPage;
 const env = Cypress.env('hostMagento');
@@ -25,9 +26,10 @@ Cypress.Commands.add('successLogin', (email, password) => {
   cy.get('#email').type(email);
   cy.get('#pass').type(password);
   cy.get('button.login').click();
+  cy.captchaHtmlWait();
 });
 
-Cypress.Commands.add('addProductToCart', (product) => {
+Cypress.Commands.add('serchAndAddProductToCart', (product) => {
   magentoMainPage.searchInStore(product.name);
   magentoMainPage.accessProduct(product.name);
   magentoProductPage.selectroductSize(product.size);
@@ -48,6 +50,17 @@ Cypress.Commands.add('cleanCart', () => {
   });
 });
 
-Cypress.Commands.add('waitRequest', (method, endPoint, alias) => {
+Cypress.Commands.add('interceptRequest', (method, endPoint, alias) => {
   cy.intercept(method, endPoint).as(alias);
+});
+
+Cypress.Commands.add('waitAndCheckRequest', (alias, statusCode) => {
+  cy.wait(alias)
+    .its('response.statusCode')
+    .should('eq', statusCode)
+});
+
+Cypress.Commands.add('captchaHtmlWait', () => {
+  cy.interceptRequest('GET', endPoints.captchaHtml, 'captchaHtml' )
+  cy.waitAndCheckRequest('@captchaHtml', 200)
 });

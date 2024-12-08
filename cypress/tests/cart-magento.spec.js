@@ -11,7 +11,7 @@ const loginDefault = login[env].loginDefault
 
 beforeEach(() => {
   cy.successLogin(loginDefault.email, loginDefault.pass);
-  cy.addProductToCart(product.torqueShort)
+  cy.serchAndAddProductToCart(product.torqueShort)
 })
 
 describe('Cart Magento', { tags: tags.cart }, () => {
