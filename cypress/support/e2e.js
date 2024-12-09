@@ -14,12 +14,12 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
-import 'cypress-real-events/support'
+import './commands';
+import 'cypress-real-events/support';
 import "allure-cypress";
 
-const registerCypressGrep = require('@cypress/grep')
-registerCypressGrep()
+const registerCypressGrep = require('@cypress/grep');
+registerCypressGrep();
 
 Cypress.on('uncaught:exception', (err) => {
   if (err.message.includes('AddFotoramaVideoEvents is not a function')) {

@@ -10,7 +10,7 @@ class MagentoCartPage {
 
   checkEmptyCart(message) {
     cy.get('.cart-empty')
-      .should('contain.text', message)
+      .should('contain.text', message);
   }
 
   procedToCheckout() {

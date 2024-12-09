@@ -6,12 +6,12 @@ import MagentoMainPage from "../pages/magento-main-page";
 import { register } from "../support/data/register";
 import { product } from "../support/data/product";
 import { address } from "../support/data/address";
-import { tags } from "../support/tags.enum"
+import { tags } from "../support/tags.enum";
 
 const magentoRegisterPage = new MagentoRegisterPage;
 const magentoCheckoutPage = new MagentoCheckoutPage;
 const magentoCartPage = new MagentoCartPage;
-const magentoProductPage = new MagentoProductPage
+const magentoProductPage = new MagentoProductPage;
 const magentoMainPage = new MagentoMainPage();
 
 beforeEach(() => {
@@ -25,7 +25,7 @@ describe('E2E Magento', { tags: tags.e2e }, () => {
     magentoRegisterPage.fillRegister(register.successRegistration);
     magentoRegisterPage.createAccountButton();
     magentoMainPage.checkLoggedUser(fullName);
-    cy.serchAndAddProductToCart(product.torqueShort)
+    cy.serchAndAddProductToCart(product.torqueShort);
     magentoProductPage.accessCartByProduct();
     magentoCartPage.procedToCheckout();
     magentoCheckoutPage.fillAddress(address.fullAdrress);
@@ -37,4 +37,4 @@ describe('E2E Magento', { tags: tags.e2e }, () => {
     magentoCheckoutPage.checkOrderCreated(product.torqueShort.name, product.torqueShort.price);
   });
 
-})
+});

@@ -2,12 +2,12 @@ import MagentoMainPage from "../pages/magento-main-page";
 import MagentoProductPage from "../pages/magento-product-page";
 import { login } from "../support/data/login";
 import { product } from "../support/data/product";
-import { tags } from "../support/tags.enum"
+import { tags } from "../support/tags.enum";
 
 const env = Cypress.env('configFile');
 const magentoMainPage = new MagentoMainPage;
-const magentoProductPage = new MagentoProductPage
-const loginDefault = login[env].loginDefault
+const magentoProductPage = new MagentoProductPage;
+const loginDefault = login[env].loginDefault;
 
 beforeEach(() => {
   cy.successLogin(loginDefault.email, loginDefault.pass);
@@ -26,4 +26,4 @@ describe('Browse Magento', { tags: tags.browse }, () => {
     magentoProductPage.checkProductPrice(product.orionJacket.price);
   });
 
-})
+});

@@ -1,22 +1,23 @@
-import { endPoints } from "../support/routes/endPoints.enum"
+import { endPoints } from "../support/routes/endPoints.enum";
 
 class MagentoProductPage {
 
   productInfo(product) {
     cy.get('.product-info-main')
-      .should('contain.text', product)
+      .should('contain.text', product);
   }
 
   checkProductName(name) {
-    this.productInfo(name)
+    this.productInfo(name);
   }
 
   checkProductPrice(price) {
-    this.productInfo(price)
+    this.productInfo(price);
   }
 
   selectroductSize(size) {
-    cy.get('#product-options-wrapper').contains(size)
+    cy.get('#product-options-wrapper')
+      .contains(size)
       .click();
   }
 
@@ -36,16 +37,13 @@ class MagentoProductPage {
   }
 
   accessCartByProduct() {
-    cy.get('div[role="alert"]').contains('shopping cart')
+    cy.get('div[role="alert"]')
+      .contains('shopping cart')
       .click();
-
-    cy.interceptRequest('GET', endPoints.shippingMethod, 'shippingMethod')
-    cy.wait('@shippingMethod')
-      .its('response.statusCode')
-      .should('eq', 200)
+    cy.interceptRequest('GET', endPoints.shippingMethod, 'shippingMethod');
+    cy.waitAndCheckRequest('@shippingMethod', 200);
   }
 
 }
 
 export default MagentoProductPage;
-

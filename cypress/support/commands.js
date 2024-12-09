@@ -23,9 +23,12 @@ Cypress.Commands.add('goToMagentoCreateAccount', () => {
 
 Cypress.Commands.add('successLogin', (email, password) => {
   cy.goToMagentoLogin();
-  cy.get('#email').type(email);
-  cy.get('#pass').type(password);
-  cy.get('button.login').click();
+  cy.get('#email')
+    .type(email);
+  cy.get('#pass')
+    .type(password);
+  cy.get('button.login')
+    .click();
   cy.captchaHtmlWait();
 });
 
@@ -40,9 +43,7 @@ Cypress.Commands.add('serchAndAddProductToCart', (product) => {
 Cypress.Commands.add('cleanCart', () => {
   cy.get('body').then(($el) => {
     if ($el.find('.action-delete').length) {
-      cy.get('.action-delete')
-        .first()
-        .click();
+      cy.get('.action-delete').first().click();
       cy.cleanCart();
     } else {
       cy.log('Cart is empty!');

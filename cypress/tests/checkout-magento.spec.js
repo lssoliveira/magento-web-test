@@ -4,13 +4,13 @@ import MagentoProductPage from "../pages/magento-product-page";
 import { login } from "../support/data/login";
 import { product } from "../support/data/product";
 import { address } from "../support/data/address";
-import { tags } from "../support/tags.enum"
+import { tags } from "../support/tags.enum";
 
 const env = Cypress.env('configFile');
 const magentoCheckoutPage = new MagentoCheckoutPage;
 const magentoCartPage = new MagentoCartPage;
 const magentoProductPage = new MagentoProductPage;
-const loginDefault = login[env].loginDefault
+const loginDefault = login[env].loginDefault;
 
 beforeEach(() => {
   cy.successLogin(loginDefault.email, loginDefault.pass);
@@ -39,4 +39,4 @@ describe('Checkout Magento', { tags: tags.checkout }, () => {
     magentoCheckoutPage.checkOrderCreated(product.torqueShort.name, product.torqueShort.price);
   });
 
-})
+});
