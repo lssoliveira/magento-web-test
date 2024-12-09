@@ -69,3 +69,4 @@ allure open ./<folder_name>
 
 - [Cypress](https://docs.cypress.io/app/get-started/why-cypress)
 - [Allure-Report](https://allurereport.org/docs/install)
+- [Eslint](https://eslint.org/docs/latest/)
