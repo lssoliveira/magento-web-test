@@ -1,12 +1,12 @@
 import MagentoLoginPage from "../pages/magento-login-page";
 import MagentoMainPage from "../pages/magento-main-page";
 import { login } from "../support/data/login";
-import { tags } from "../support/tags.enum"
+import { tags } from "../support/tags.enum";
 
 const env = Cypress.env('configFile');
 const magentoLoginPage = new MagentoLoginPage();
 const magentoMainPage = new MagentoMainPage();
-const loginDefault = login[env].loginDefault
+const loginDefault = login[env].loginDefault;
 
 beforeEach(() => {
   cy.goToMagentoLogin();
@@ -23,8 +23,8 @@ describe('Login Magento', { tags: tags.login }, () => {
   });
 
   it('Validate unregistered email login', () => {
-    const email = login[env].email.notRegistered
-    const pass = login[env].pass.valid
+    const email = login[env].email.notRegistered;
+    const pass = login[env].pass.valid;
 
     magentoLoginPage.fillEmail(email);
     magentoLoginPage.fillPass(pass);
@@ -34,8 +34,8 @@ describe('Login Magento', { tags: tags.login }, () => {
   });
 
   it('Validate invalid email login', () => {
-    const email = login[env].email.invalid
-    const pass = login[env].pass.valid
+    const email = login[env].email.invalid;
+    const pass = login[env].pass.valid;
 
     magentoLoginPage.fillEmail(email);
     magentoLoginPage.fillPass(pass);
@@ -51,4 +51,4 @@ describe('Login Magento', { tags: tags.login }, () => {
     magentoLoginPage.checkPassAlert('This is a required field.');
   });
 
-})
+});

@@ -22,12 +22,13 @@ class MagentoAccountPage {
   }
 
   accessManageAddresses() {
-    cy.get('a').contains('Manage Addresses')
+    cy.get('a')
+      .contains('Manage Addresses')
       .click();
   }
 
   accessAddNewAddress() {
-    cy.captchaHtmlWait()
+    cy.captchaHtmlWait();
     cy.get("button[title='Add New Address']")
       .click();
   }
@@ -58,7 +59,7 @@ class MagentoAccountPage {
 
   selectState(state) {
     cy.get('#region_id')
-      .select(state)
+      .select(state);
   }
 
   fillZipCode(zipCode) {
@@ -68,7 +69,7 @@ class MagentoAccountPage {
 
   selectCountry(country) {
     cy.get('#country')
-      .select(country)
+      .select(country);
   }
 
   fillFullAddress(adrress) {
@@ -91,9 +92,11 @@ class MagentoAccountPage {
   }
 
   deleteLastAdditionalAddres() {
-    cy.get("a[role='delete-address']").first()
+    cy.get("a[role='delete-address']")
+      .first()
       .click();
-    cy.get('button.action-accept').contains('OK')
+    cy.get('button.action-accept')
+      .contains('OK')
       .click();
   }
 

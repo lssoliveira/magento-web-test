@@ -2,7 +2,7 @@ import MagentoRegisterPage from "../pages/magento-register-page";
 import MagentoAccountPage from "../pages/magento-account-page";
 import MagentoMainPage from "../pages/magento-main-page";
 import { register } from "../support/data/register";
-import { tags } from "../support/tags.enum"
+import { tags } from "../support/tags.enum";
 
 const magentoRegisterPage = new MagentoRegisterPage;
 const magentoAccountPage = new MagentoAccountPage;
@@ -44,4 +44,6 @@ describe('Create Account Magento', { tags: tags.register }, () => {
     magentoRegisterPage.checkErrorPass('Minimum of different classes of characters in password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.');
     magentoRegisterPage.checkErrorPassConfirm('Please enter the same value again.');
   });
-})
+
+});
+

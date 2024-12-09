@@ -1,11 +1,11 @@
 import MagentoAccountPage from "../pages/magento-account-page";
 import { login } from "../support/data/login";
 import { address } from "../support/data/address";
-import { tags } from "../support/tags.enum"
+import { tags } from "../support/tags.enum";
 
 const env = Cypress.env('configFile');
 const magentoAccountPage = new MagentoAccountPage;
-const loginDefault = login[env].loginDefault
+const loginDefault = login[env].loginDefault;
 
 beforeEach(() => {
   cy.successLogin(loginDefault.email, loginDefault.pass);
@@ -18,7 +18,7 @@ describe('Account Magento', { tags: tags.account }, () => {
 
   it('Validate address addition', () => {
     const fullAdrress = address.fullAdrress
-    
+
     magentoAccountPage.accessManageAddresses();
     magentoAccountPage.accessAddNewAddress();
     magentoAccountPage.fillFullAddress(fullAdrress);
@@ -40,4 +40,4 @@ describe('Account Magento', { tags: tags.account }, () => {
     magentoAccountPage.checkAddresDeleted('You deleted the address.');
   });
 
-})
+});

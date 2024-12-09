@@ -10,34 +10,36 @@ class MagentoMainPage {
   dropDownAccount() {
     cy.get('#ui-id-2')
       .should('be.visible')
-    cy.get('.customer-welcome').first()
+    cy.get('.customer-welcome')
+      .first()
       .click();
   }
 
   accessMyAccout() {
     this.dropDownAccount();
-    cy.get('li').contains('My Account')
+    cy.get('li')
+      .contains('My Account')
       .click();
   }
 
   searchInStore(product) {
     cy.get('#search')
-      .type(product)
-      .type('{enter}');
+      .type(`${product}{enter}`);
   }
 
   checkSearchResult(search) {
     cy.get('.page-title')
-      .should('contain.text', `Search results for: '${search}'`)
+      .should('contain.text', `Search results for: '${search}'`);
   }
 
   checkSearchProduct(product) {
     cy.get('.product-item-info')
-      .should('contain.text', product)
+      .should('contain.text', product);
   }
 
   accessProduct(product) {
-    cy.get('.product-item-info').contains(product)
+    cy.get('.product-item-info')
+      .contains(product)
       .click();
     cy.captchaHtmlWait();
   }

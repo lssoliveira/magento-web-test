@@ -1,4 +1,4 @@
-import { endPoints } from "../support/routes/endPoints.enum"
+import { endPoints } from "../support/routes/endPoints.enum";
 
 class MagentoCheckoutPage {
 
@@ -29,7 +29,7 @@ class MagentoCheckoutPage {
 
   selectState(state) {
     cy.get("select[name='region_id']")
-      .select(state)
+      .select(state);
   }
 
   fillZipCode(zipCode) {
@@ -39,7 +39,7 @@ class MagentoCheckoutPage {
 
   selectCountry(country) {
     cy.get("select[name='country_id']")
-      .select(country)
+      .select(country);
   }
 
   fillPhoneNumber(phoneNumber) {
@@ -70,9 +70,11 @@ class MagentoCheckoutPage {
   }
 
   expandOrderSummary() {
-    cy.get("div[role='tab']").contains('in Cart')
+    cy.get("div[role='tab']")
+      .contains('in Cart')
       .click();
-    cy.get('.product-item').contains('View Details')
+    cy.get('.product-item')
+      .contains('View Details')
       .click({ force: true });
   }
 
@@ -82,7 +84,7 @@ class MagentoCheckoutPage {
       .should('contain.text', product.name)
       .should('contain.text', product.price)
       .should('contain.text', product.size)
-      .should('contain.text', product.color)
+      .should('contain.text', product.color);
   }
 
   nextStep() {
@@ -92,8 +94,8 @@ class MagentoCheckoutPage {
   }
 
   placeOrder() {
-    cy.waitAndCheckRequest('@cartsMine', 200)
-    cy.interceptRequest('POST', endPoints.paymentInformation, 'paymentInformation')
+    cy.waitAndCheckRequest('@cartsMine', 200);
+    cy.interceptRequest('POST', endPoints.paymentInformation, 'paymentInformation');
     cy.get("button[title='Place Order']")
       .click();
   }
@@ -114,11 +116,11 @@ class MagentoCheckoutPage {
     this.accessOrderCreated();
     cy.get('#my-orders-table').first()
       .should('contain.text', product)
-      .should('contain.text', price)
+      .should('contain.text', price);
   }
 
   checkPaymentInformation(statusCode) {
-    cy.waitAndCheckRequest('@paymentInformation', statusCode)
+    cy.waitAndCheckRequest('@paymentInformation', statusCode);
   }
 
 }

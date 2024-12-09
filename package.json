@@ -20,7 +20,8 @@
     "cypress:run:smoke:edge": "npm run allure:clean && npx cypress run --browser edge --env grepTags=@login",
     "allure:generete": "allure generate ./allure-results -o ./allure-report",
     "allure:open": "allure open ./allure-report",
-    "allure:clean": "npx rimraf ./allure-results/ && npx rimraf ./allure-report/"
+    "allure:clean": "npx rimraf ./allure-results/ && npx rimraf ./allure-report/",
+    "eslint:check": "npx eslint ."
   },
   "repository": {
     "type": "git",
@@ -31,11 +32,14 @@
   "license": "ISC",
   "devDependencies": {
     "@cypress/grep": "^4.1.0",
+    "@eslint/js": "^9.16.0",
     "@faker-js/faker": "^9.3.0",
     "allure-cypress": "^3.0.7",
     "cypress": "^13.8.1",
     "cypress-localstorage-commands": "^2.2.7",
     "cypress-plugin-tab": "^1.0.5",
-    "cypress-real-events": "^1.13.0"
+    "cypress-real-events": "^1.13.0",
+    "eslint": "^9.16.0",
+    "eslint-plugin-cypress": "^4.1.0"
   }
 }
