@@ -40,7 +40,6 @@ module.exports = defineConfig({
         config.env.hostMagento = 'https://magento.softwaretestingboard.com/';
       }
 
-      require('cypress-localstorage-commands/plugin')(on, config);
       require('@cypress/grep/src/plugin')(config);
       allureCypress(on, config, {
         resultsDir: 'allure-results',
