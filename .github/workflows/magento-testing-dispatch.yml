@@ -26,6 +26,9 @@ on:
           - chrome
           - electron
           - edge
+  push:
+    branches:
+      - testing
 
 jobs:
   cypress-tests:
