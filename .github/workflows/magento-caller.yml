@@ -28,7 +28,7 @@ on:
             - edge
 jobs:
   invoke-default-workflow:
-    uses: ./.github/workflows/magento-deafult.yml
+    uses: lssoliveira/magento-web-test/.github/workflows/magento-deafult.yml@main
     with:
       tag: ${{ inputs.tag }}
       browser: ${{ inputs.browser }}
