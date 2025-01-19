@@ -1,4 +1,4 @@
-name: Run Smoke Tests
+name: Magento Caller
 on:
   workflow_dispatch:
     inputs:
