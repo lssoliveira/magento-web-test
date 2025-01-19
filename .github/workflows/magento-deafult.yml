@@ -34,7 +34,11 @@ jobs:
         env:
           CYPRESS_PASS_DEFAULT: ${{ secrets.CYPRESS_PASS_DEFAULT }}
         run: |
-          npm run cypress:run:${{ github.event.inputs.tag }} -- --browser=${{ github.event.inputs.browser }}
+          if [[ -n "${{ inputs.customTag }}" ]]; then
+            npm run cypress:run:${{ inputs.customTag }} -- --browser=${{ github.event.inputs.browser }}
+          else
+            npm run cypress:run:${{ github.event.inputs.tag }} -- --browser=${{ github.event.inputs.browser }}
+          fi
 
       - name: Generate Allure report
         if: always()
