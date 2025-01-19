@@ -4,16 +4,18 @@ on:
     inputs:
       tag:
         description: "Tag of the test"
-        required: true
         type: string
+        required: true
+        default: login
       browser:
         description: "Browser of the test"
-        required: true
         type: string
+        required: true
+        default: chrome
       customTag: 
         description: "Set the custom Tag if exist"
-        required: false
         type: string
+        required: false
 
 jobs:
   cypress-tests:

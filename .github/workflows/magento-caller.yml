@@ -12,15 +12,20 @@ on:
           - smoke
           - cart
           - custom
+          - checkout
       customTag:
         description: "Custom Cypress config file (used if 'custom' is selected)"
         type: string
         required: false
       browser:
         description: "Browser to run the test"
+        type: choice
         required: false
         default: "chrome"
-
+        options:
+            - electron
+            - chrome
+            - edge
 jobs:
   invoke-default-workflow:
     uses: ./.github/workflows/magento-deafult.yml
