@@ -1,0 +1,30 @@
+name: Magento Caller
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Cypress config file (choose predefined or enter manually)"
+        type: choice
+        required: false
+        default: "login"
+        options:
+          - login
+          - smoke
+          - cart
+          - custom
+      customTag:
+        description: "Custom Cypress config file (used if 'custom' is selected)"
+        type: string
+        required: false
+      browser:
+        description: "Browser to run the test"
+        required: false
+        default: "chrome"
+
+jobs:
+  invoke-default-workflow:
+    uses: ./.github/workflows/magento-deafult.yml
+    with:
+      tag: ${{ inputs.tag }}
+      browser: ${{ inputs.browser }}
+      customTag: ${{ inputs.customTag }}

@@ -1,31 +1,19 @@
-name: Magento Dispatch
+name: Magento Default
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       tag:
-        description: "Select the tag"
+        description: "Tag of the test"
         required: true
-        default: "e2e"
-        type: choice
-        options:
-          - full
-          - e2e
-          - smoke
-          - login
-          - register
-          - account
-          - browse
-          - cart
-          - checkout
+        type: string
       browser:
-        description: "Selecione the browser"
+        description: "Browser of the test"
         required: true
-        default: "chrome"
-        type: choice
-        options:
-          - chrome
-          - electron
-          - edge
+        type: string
+      customTag: 
+        description: "Set the custom Tag if exist"
+        required: false
+        type: string
 
 jobs:
   cypress-tests:
