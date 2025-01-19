@@ -34,7 +34,7 @@ jobs:
         env:
           CYPRESS_PASS_DEFAULT: ${{ secrets.CYPRESS_PASS_DEFAULT }}
         run: |
-          if [[ "${{ inputs.customTag }}" == "" ]]; then
+          if [[ -n "${{ inputs.customTag }}" ]]; then
             npm run cypress:run:${{ inputs.customTag }} -- --browser=${{ github.event.inputs.browser }}
           else
             npm run cypress:run:${{ github.event.inputs.tag }} -- --browser=${{ github.event.inputs.browser }}
