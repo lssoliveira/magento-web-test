@@ -20,7 +20,6 @@ on:
 jobs:
   cypress-tests:
     runs-on: ubuntu-20.04
-    timeout-minutes: 1
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -35,6 +34,7 @@ jobs:
         env:
           CYPRESS_PASS_DEFAULT: ${{ secrets.CYPRESS_PASS_DEFAULT }}
         run: |
+          (sleep 40 && echo "Timeout! Killing process..." && pkill -f cypress) & 
           if [[ -n "${{ inputs.customTag }}" ]]; then
             npm run cypress:run:${{ inputs.customTag }} -- --browser=${{ github.event.inputs.browser }}
           else
